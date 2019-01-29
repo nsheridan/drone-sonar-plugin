@@ -28,6 +28,11 @@ func main() {
 			EnvVar: "DRONE_REPO",
 		},
 		cli.StringFlag{
+			Name:   "branch",
+			Usage:  "branch name",
+			EnvVar: "DRONE_COMMIT_BRANCH",
+		},
+		cli.StringFlag{
 			Name:   "host",
 			Usage:  "SonarQube host",
 			EnvVar: "SONAR_HOST",
@@ -47,7 +52,7 @@ func main() {
 		cli.StringFlag{
 			Name:   "timeout",
 			Usage:  "Web request timeout",
-			Value: 	"60",
+			Value:  "60",
 			EnvVar: "PLUGIN_TIMEOUT",
 		},
 		cli.StringFlag{
@@ -86,18 +91,19 @@ func main() {
 func run(c *cli.Context) {
 	plugin := Plugin{
 		Config: Config{
-			Key:   			c.String("key"),
-			Name:    		c.String("name"),
-			Host:  			c.String("host"),
-			Token: 			c.String("token"),
+			Key:    c.String("key"),
+			Name:   c.String("name"),
+			Host:   c.String("host"),
+			Token:  c.String("token"),
+			Branch: c.String("branch"),
 
-			Version:    	c.String("ver"),
-			Timeout:    	c.String("timeout"),
-			Sources:    	c.String("sources"),
-			Inclusions:    	c.String("inclusions"),
-			Exclusions:    	c.String("exclusions"),
-			Level:    		c.String("level"),
-			showProfiling:  c.String("showProfiling"),
+			Version:       c.String("ver"),
+			Timeout:       c.String("timeout"),
+			Sources:       c.String("sources"),
+			Inclusions:    c.String("inclusions"),
+			Exclusions:    c.String("exclusions"),
+			Level:         c.String("level"),
+			showProfiling: c.String("showProfiling"),
 		},
 	}
 
